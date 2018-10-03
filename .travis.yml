@@ -16,20 +16,20 @@ script:
 travs-ci.org
 
 after_success:
- - cp $TRAVIS_BUILD_DIR/src/Clients/build/libs/*.war
+  - cp $TRAVIS_BUILD_DIR/src/Clients/build/libs/*.war
 $TRAVIS_BUILD_DIR/deploy/docker/Clients/drop/ # misma línea que la anterior
- - docker login -u $DOCKER_USER -p $DOCKER_PASS
- - export REPO=p1gps
- - export TAG=web
- - docker build -t $REPO/$TAG $TRAVIS_BUILD_DIR/deploy/docker/Clients
- - docker tag $REPO/$TAG $DOCKER_USER/$REPO:$TAG
- - docker push $DOCKER_USER/$REPO:$TAG
- - cp $TRAVIS_BUILD_DIR/src/Backend/OrderService/build/libs/ordering*
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=p1gps
+  - export TAG=web
+  - docker build -t $REPO/$TAG $TRAVIS_BUILD_DIR/deploy/docker/Clients
+  - docker tag $REPO/$TAG $DOCKER_USER/$REPO:$TAG
+  - docker push $DOCKER_USER/$REPO:$TAG
+  - cp $TRAVIS_BUILD_DIR/src/Backend/OrderService/build/libs/ordering*
 $TRAVIS_BUILD_DIR/deploy/docker/Order/drop/ # misma línea que la anterior
- - export TAG=order
- - docker build -t $REPO/$TAG $TRAVIS_BUILD_DIR/deploy/docker/Order
- - docker tag $REPO/$TAG $DOCKER_USER/$REPO:$TAG
- - docker push $DOCKER_USER/$REPO:$TAG
+  - export TAG=order
+  - docker build -t $REPO/$TAG $TRAVIS_BUILD_DIR/deploy/docker/Order
+  - docker tag $REPO/$TAG $DOCKER_USER/$REPO:$TAG
+  - docker push $DOCKER_USER/$REPO:$TAG
 
 # no creamos la imagen de mongodb con el archivo mongorecords.js porque es estático y
 #ya lo hemos subido a DockerHub manualmente.
