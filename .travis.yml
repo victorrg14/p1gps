@@ -12,8 +12,7 @@ script:
   - cd  $TRAVIS_BUILD_DIR/src/Clients
   - ./gradlew build
 
-#las variables de entorno para los credenciales de acceso a DockerHub las #creamos en
-travs-ci.org
+#las variables de entorno para los credenciales de acceso a DockerHub las #creamos en travs-ci.org
 
 after_success: 
   - "cp $TRAVIS_BUILD_DIR/src/Clients/build/libs/*.war $TRAVIS_BUILD_DIR/deploy/docker/Clients/drop/"
